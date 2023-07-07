@@ -4,7 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   css: ['vuetify/lib/styles/main.sass', 'mdi/css/materialdesignicons.min.css'], // 修正
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify', /vue3-library-reproduction/],
   },
   vite: {
     define: {
