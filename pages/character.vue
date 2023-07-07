@@ -31,20 +31,28 @@ const TRAITS = [
             </v-img>
         </v-col>
         <v-col xs="12" cols="12">
-            <v-card :title="`${NAME}の特長`">
+            <v-card class="pa-2" flat>
+                <h2>
+                    「誠実な努力が一番の近道なの」
+                </h2>
+                <p>
+                    公立高校の生徒会長であり、学校のアイドルでもある千晶はそう言った。名声を求める密かな気持ちが、困っている人を助けたいという彼女の気持ちを形作ってきた。高校の学校説明会であなたと知り合った彼女は、あなたの英語学習をサポートさせてほしいと言う。
+                </p>
+            </v-card>
+        </v-col>
+        <v-col xs="12" cols="12">
+            <v-card :title="`${NAME}の特長`" flat class="pa-2">
                 <v-chip v-for="i in TRAITS" class="justify-space-around">
                     {{ i }}
                 </v-chip>
             </v-card>
         </v-col>
         <v-col xs="12" cols="12">
-            <v-card :title="`${NAME}の評判`">
-
-            </v-card>
+            <v-card :title="`${NAME}の評判`" flat class="pa-2" />
         </v-col>
     </v-row>
     <v-row class="justify-align-center">
-        <v-btn :to="CHATROOM_PARAM">
+        <v-btn :to="CHATROOM_PARAM" block>
             このキャラと話す
         </v-btn>
     </v-row>
