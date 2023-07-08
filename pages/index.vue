@@ -20,7 +20,7 @@
         <v-row class="pa-2">
             <v-col xs="6" md="4" lg="3" v-for="i in    friends   " class="justify-space-around pa-2">
                 <v-card class="mx-auto">
-                    <v-img src="/img/7.jpeg" cover class="text-white align-end text-white" aspect-ratio="1">
+                    <v-img src="@/img/7.jpeg" cover class="text-white align-end text-white" aspect-ratio="1">
                         <v-card-title>
                             {{ i["name"] }}
                         </v-card-title>
