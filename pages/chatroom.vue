@@ -18,7 +18,7 @@
                   style="margin-top: 5px; margin-bottom: 5px;"
                 >
                   <v-avatar v-if="message.sender === 'Bob'" size="48">
-                    <v-img src="/img/0.jpeg" alt="Bob's Icon"></v-img>
+                    <v-img src="/palpa-oasys-prototype/img/0.jpeg" alt="Bob's Icon"></v-img>
                   </v-avatar>
                   <div :class="{'message-content-left': message.sender === 'Bob', 'message-content-right': message.sender === 'Alice'}" style="padding-top: 20px; padding-bottom: 20px; font-size:large;">
                     <span class="message-sender">{{ message.content }}</span>
@@ -46,7 +46,7 @@
   
   <style scoped>
   .background-container {
-    background-image: url("/img/background.jpeg");
+    background-image: url("/palpa-oasys-prototype/img/background.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
