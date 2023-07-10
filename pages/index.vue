@@ -1,45 +1,59 @@
 <template>
-    <div class="pt-2">
+    <div class="pt-2 background-container">
         <!-- フレンズ -->
-        <v-row justify="center" class="pa-2">
-            <v-card v-ripple title="Friends" flat rounded>
-
+        <v-row justify="center" class="pa-2" style="margin-top: 10px;">
+            <v-card v-ripple flat class="px-50 py-5 text-center" style="border-radius: 30px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); padding: 150px; margin-top: 50px;">
+                <a>
+                    フレンズ
+                </a>
+                <h1 style="font-size: 40px; font-weight: bold; color: #333;">
+                    Friends
+                </h1>
             </v-card>
         </v-row>
 
-        <v-row>
+        <v-row style="margin-top: 30px;">
             <v-col>
-                <v-card flat class="justify-center pa-2">
-                    <b>
-                        お気に入りのキャラであなたの学習を支援
-                    </b>
+                <v-card flat class="justify-center pa-2 text-center">
+                    <h2>
+                        お気に入りのキャラで<br>あなたの学習を支援
+                    </h2>
                 </v-card>
             </v-col>
         </v-row>
 
-        <v-row class="pa-2">
-            <v-col xs="6" md="4" lg="3" v-for="i in    friends   " class="justify-space-around pa-2">
-                <v-card class="mx-auto">
-                    <v-img src="/palpa-oasys-prototype/img/7.jpeg" cover class="text-white align-end text-white" aspect-ratio="1">
-                        <v-card-title>
-                            {{ i["name"] }}
-                        </v-card-title>
+        <v-row class="py-10">
+            <v-col cols="12" class="text-center">
+                <v-divider vertical :length="100" style="border-width: 1.5px; height: 200px; width: 100px; border-color:#000000"></v-divider>
+            </v-col>
+        </v-row>
+
+        <v-row>
+            <v-col class="justify-center pa-2 text-center" style="margin-bottom: 30px;">
+                    <h2>
+                        フレンズを探す
+                    </h2>
+            </v-col>
+        </v-row>
+
+        <v-row class="pa-4 justify-content-start" no-gutters style="row-gap: 1em;  column-gap: 0em;">
+            <v-col xs="12" md="6" lg="4" v-for="(i, index) in friends" class="ma-0 pa-4 col position-relative" style="flex-grow: 10; margin:10%; column-gap: 100px; width: 400px;">
+                <v-card class="mx-auto d-flex flex-column" style="height: 500px; width: 400px; border-radius: 20px;">
+                    <v-img :src="`/img/${index}.jpeg`" cover class="text-white align-end text-white flex-grow-1">
                     </v-img>
-                    <v-card flat class="pa-2">
-                        <v-row>
-                            <v-col v-for="tag in i.tags">
-                                <v-chip :color="tagColor(tag)" dark :key="tag">
-                                    {{ tag }}
-                                </v-chip>
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12">
-                                <v-btn color="primary" flat block :to="friend_route(i.id)">
-                                    詳しく
-                                </v-btn>
-                            </v-col>
-                        </v-row>
+                    <v-card flat class="pa-2 position-absolute d-flex flex-column justify-content-between" :style="{backgroundColor: i.color}" style=" bottom: 0; left: 0; right: 0;  border-radius: 15px; padding: 0; margin: 20px" :to="friend_route(i.id)">
+                        <v-card-title style="color: #FFFFFF; font-weight: 700; font-size:x-large; display: flex; justify-content: space-between;">
+                            <span>{{ i["name"] }}</span>
+                            <span style="margin-left: auto;">>></span>
+                        </v-card-title>
+                        <v-col class="d-flex flex-wrap">
+                            <v-chip v-for="tag in i.tags" :color="tagColor(tag)" dark :key="tag" class="ma-1" style="font-weight: 500; background: #ffffff; border-radius: 5px;">
+                                {{ tag }}
+                            </v-chip>
+                        </v-col>
+                        <!-- <v-btn color="primary" style="height: 40px; border-radius: 25px;"  :to="friend_route(i.id)">
+                            詳しく
+                        </v-btn> -->
                     </v-card>
                 </v-card>
             </v-col>
@@ -52,21 +66,43 @@ const friend_route = function (id) { return { path: "/character", query: { id } 
 const friends = [
     {
         id: "stuff1",
-        name: "stuff1",
+        name: "佐藤ちあき",
         tags: [
             "学習支援",
             "英語",
             "高校受験"
-        ]
+        ],
+        color: "#7AA1B899"
     },
     {
         id: "stuff2",
-        name: "stuff2",
+        name: "橘みれい",
         tags: [
             "学習支援",
             "英語",
             "高校受験"
-        ]
+        ],
+        color: "#211E2699"
+    },
+    {
+        id: "stuff3",
+        name: "瀬名たくと",
+        tags: [
+            "学習支援",
+            "英語",
+            "高校受験"
+        ],
+        color: "#3054AA99"
+    },
+    {
+        id: "stuff4",
+        name: "瀬名たくと",
+        tags: [
+            "学習支援",
+            "英語",
+            "高校受験"
+        ],
+        color: "#FB989799"
     }
 ]
 function tagColor(tag) {
@@ -79,3 +115,11 @@ function tagColor(tag) {
 }
 </script>
   
+<style>
+.background-container {
+  background-image: url("/img/background.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+</style>
