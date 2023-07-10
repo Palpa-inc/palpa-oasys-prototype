@@ -59,9 +59,6 @@
                                 {{ tag }}
                             </v-chip>
                         </v-col>
-                        <!-- <v-btn color="primary" style="height: 40px; border-radius: 25px;"  :to="friend_route(i.id)">
-                            詳しく
-                        </v-btn> -->
                     </v-card>
                 </v-card>
             </v-col>
