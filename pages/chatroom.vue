@@ -130,21 +130,15 @@
   
   <script>
 import { ref, watch } from 'vue';
-
-export default {
-  data() {
-    return {
-      messages: [
+const messages = [
         { id: 1, sender: 'Alice', content: 'Hello!' },
         { id: 2, sender: 'Bob', content: 'Hi Alice!' },
         { id: 3, sender: 'Alice', content: 'How are you?' },
         { id: 4, sender: 'Bob', content: "I'm doing well. Thanks!" },
-      ],
-      newMessage: '',
-    };
-  },
-  methods: {
-    sendMessage() {
+      ];
+let newMessage =  ref('');
+    function sendMessage() {
+        // あとで、APIを叩くようにする。
       if (this.newMessage.trim() !== '') {
         this.messages.push({
           id: this.messages.length + 1,
@@ -154,17 +148,8 @@ export default {
         
         this.newMessage = '';
       }
-    },
-    scrollToEnd() {
+    }
+    function scrollToEnd() {
       this.$refs.messagesContainer.scrollTop = this.$refs.messagesContainer.scrollHeight;
     }
-  },
-  mounted() {
-    this.$refs.messageInput.focus();
-    this.scrollToEnd();
-  },
-  updated() {
-    this.scrollToEnd();
-  }
-};
 </script>
