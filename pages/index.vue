@@ -39,7 +39,7 @@
         <v-row class="pa-4 justify-content-start" no-gutters style="row-gap: 1em;  column-gap: 0em;">
             <v-col xs="6" md="6" lg="4" v-for="(i, index) in friends" class="ma-0 pa-4 col position-relative" style="flex-grow: 10; margin:10%; column-gap: 100px; width: 400px;">
                 <v-card class="mx-auto d-flex flex-column" style="height: 500px; width: 300px; border-radius: 20px;">
-                    <v-img :src="`/img/${index}.jpeg`" cover class="text-white align-end text-white flex-grow-1">
+                    <v-img :src="`/palpa-oasys-prototype/img/${index}.jpeg`" cover class="text-white align-end text-white flex-grow-1">
                     </v-img>
                     <v-card flat class="pa-2 position-absolute d-flex flex-column justify-content-between" :style="{backgroundColor: i.color}" style=" bottom: 0; left: 0; right: 0;  border-radius: 15px; padding: 0; margin: 10px" :to="friend_route(i.id)">
                         <v-card-title style="color: #FFFFFF; font-weight: 700; font-size:x-large; display: flex; justify-content: space-between;">
@@ -117,7 +117,7 @@ function tagColor(tag) {
   
 <style>
 .background-container {
-  background-image: url("/img/background.jpeg");
+  background-image: url("/palpa-oasys-prototype/img/background.jpeg");
   background-size: cover;
   background-repeat:no-repeat;
   background-position:center;

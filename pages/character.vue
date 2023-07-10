@@ -24,7 +24,7 @@ const TRAITS = [
 <template>
     <v-row style="background-color: #6694ad;">
         <v-col xs="12" cols="12">
-            <v-img src="/img/0.jpeg" cover class="text-white" aspect-ratio="1" style="width: 100%; position: fixed;">
+            <v-img src="/palpa-oasys-prototype/img/0.jpeg" cover class="text-white" aspect-ratio="1" style="width: 100%; position: fixed;">
                 <v-card-title style="font-weight: 900; padding-top: 20px;">
                     {{ NAME }}
                 </v-card-title>
