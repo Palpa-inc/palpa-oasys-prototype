@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 const TITLE = "Prototype 1"
 let drawer = ref(false)
+let rail = ref(false)
 const NAVIGATION_ITEMS = [
     {
         title: "this",
