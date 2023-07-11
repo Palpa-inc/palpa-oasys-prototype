@@ -10,10 +10,10 @@ const message_stack = [
   }
 ]
 async function postChat() {
-  message_stack.push({content: newMessage, role: "user"})
+  message_stack.push({content: newMessage.value, role: "user"})
   const { data } = await axios.post("https://palpa-prod-api.azure-api.net/api/v1/min", message_stack)
   message_stack.push(data)
-  newMessage = ""
+  newMessage.value = ""
   return data
 }
 </script>
