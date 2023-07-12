@@ -48,5 +48,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     print()
     asdf=[start]
     asdf.extend(req.get_json())
-    data=openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=asdf)
+    data=openai.ChatCompletion.create(model="gpt-3.5-turbo-16k-0613", messages=asdf)
     return func.HttpResponse(json.dumps(data["choices"][0]["message"]), status_code=200)

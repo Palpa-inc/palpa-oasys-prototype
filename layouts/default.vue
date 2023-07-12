@@ -15,7 +15,7 @@ const NAVIGATION_ITEMS = [
 
 <template>
     <v-layout class="rounded rounded-md">
-        <v-app-bar color="teal-darken-4" image="https://picsum.photos/1920/1080?random">
+        <v-app-bar color="teal-darken-4">
             <template v-slot:image>
                 <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
             </template>
@@ -28,7 +28,7 @@ const NAVIGATION_ITEMS = [
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" @click="rail = false">
             <v-list nav>
-                <v-list-item prepend-icon="mdi-home-city" title="Home" value="home"></v-list-item>
+                <v-list-item prepend-icon="mdi-home-city" title="Home" value="index" to="/"></v-list-item>
                 <v-list-item prepend-icon="mdi-account" title="My Account" value="account"></v-list-item>
                 <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
             </v-list>

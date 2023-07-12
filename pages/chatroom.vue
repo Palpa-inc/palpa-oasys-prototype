@@ -1,21 +1,30 @@
 <script setup>
 import axios from 'axios';
-import { ref, watch } from 'vue';
+import { ref, reactive } from 'vue';
 
 const newMessage = ref('');
-const message_stack = [
+const isLoading = ref(false);
+const message_stack = reactive([
   {
     "role": "system",
-    "content": "meh"
+    "content": "Hi"
   }
-]
+])
 async function postChat() {
-  message_stack.push({content: newMessage.value, role: "user"})
-  const { data } = await axios.post("https://palpa-prod-api.azure-api.net/api/v1/min", message_stack)
-  message_stack.push(data)
-  newMessage.value = ""
+  if (!isLoading.value && newMessage.value.trim() !== '') {
+    isLoading.value = true;
+    const userMessage = {content: newMessage.value, role: "user"};
+    message_stack.push(userMessage);
+    newMessage.value = "";
+    const loadingMessage = {content: '入力中...', role: "system"};
+    message_stack.push(loadingMessage);
+    const { data } = await axios.post("https://palpa-prod-api.azure-api.net/api/v1/min", message_stack);
+    message_stack[message_stack.length - 1] = {content: data.content, role: "system"};
+    isLoading.value = false;
+  }
   return data
 }
+
 </script>
 
 
@@ -24,7 +33,7 @@ async function postChat() {
     <v-row justify="center">
       <v-col cols="12">
         <v-app-bar dense flat color="secondary">
-          <v-toolbar-title class="chatroom-title" style="font-weight: 700; color: aliceblue;">佐藤みちこ</v-toolbar-title>
+          <v-toolbar-title class="chatroom-title" style="font-weight: 700; color: aliceblue;">佐藤ちあき</v-toolbar-title>
         </v-app-bar>
       </v-col>
       <v-col cols="12" class="pa-0">
@@ -36,11 +45,13 @@ async function postChat() {
                 style="margin-top: 5px; margin-bottom: 5px;">
                 <v-avatar v-if="message.role !== 'user'" size="48">
                   <v-img src="/palpa-oasys-prototype/img/0.jpeg" alt="Bob's Icon"></v-img>
+                  <!-- <v-img src="/img/0.jpeg" alt="Bob's Icon"></v-img> -->
                 </v-avatar>
                 <div
                   :class="{ 'message-content-left': message.role !== 'user', 'message-content-right': message.role === 'user' }"
                   style="padding-top: 20px; padding-bottom: 20px; font-size:large;">
-                  <span class="message-sender">{{ message.content }}</span>
+                  <span v-if="!message.loading" class="message-sender">{{ message.content }}</span>
+                  <span v-else class="message-sender loading">{{ message.content }}</span>
                 </div>
               </div>
             </div>
@@ -50,17 +61,18 @@ async function postChat() {
     </v-row>
     <div class="chat-input-area">
       <input ref="messageInput" v-model="newMessage" class="chat-input" placeholder="Type your message"
-        @keydown.enter="postChat(newMessage)">
-      <button class="chat-send-button" @click="postChat(newMessage)">Send</button>
+        @keydown.enter.meta="postChat(newMessage)"
+        
+        :class="{ 'loading': isLoading }">
+      <button class="chat-send-button" @click="postChat(newMessage)" :disabled="isLoading">Send</button>
     </div>
   </v-container>
 </template>
   
-  <!-- 先ほどの <script> タグはそのままにしておきます -->
-  
 <style scoped>
 .background-container {
   background-image: url("/palpa-oasys-prototype/img/background.jpeg");
+  /* background-image: url("/img/background.jpeg"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -133,6 +145,19 @@ async function postChat() {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
+.loading::after {
+  content: '...';
+  animation: loading 1s steps(3, end) infinite;
+}
+
+@keyframes loading {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
 
 .chat-send-button {
   padding: 10px 20px;
